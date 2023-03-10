@@ -6,6 +6,8 @@ import 'package:great_places/widgets/image_input.dart';
 import 'package:provider/provider.dart';
 
 class PlaceFormScreen extends StatefulWidget {
+  const PlaceFormScreen({Key? key}) : super(key: key);
+
   @override
   State<PlaceFormScreen> createState() => _PlaceFormScreenState();
 }
@@ -27,6 +29,7 @@ class _PlaceFormScreenState extends State<PlaceFormScreen> {
       _titleController.text,
       _pickedImage!,
     );
+
     Navigator.of(context).pop();
   }
 
@@ -37,19 +40,18 @@ class _PlaceFormScreenState extends State<PlaceFormScreen> {
         title: const Text('Novo Lugar'),
       ),
       body: Column(
-        // mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Expanded(
             child: SingleChildScrollView(
               child: Padding(
-                padding: const EdgeInsets.all(10.0),
+                padding: const EdgeInsets.all(10),
                 child: Column(
                   children: [
                     TextField(
                       controller: _titleController,
                       decoration: const InputDecoration(
-                        labelText: 'Titulo',
+                        labelText: 'Título',
                       ),
                     ),
                     const SizedBox(height: 10),
@@ -60,12 +62,15 @@ class _PlaceFormScreenState extends State<PlaceFormScreen> {
             ),
           ),
           ElevatedButton.icon(
-            onPressed: _submitForm,
             icon: const Icon(Icons.add),
             label: const Text('Adicionar'),
             style: ElevatedButton.styleFrom(
-                elevation: 0,
-                backgroundColor: Theme.of(context).colorScheme.secondary),
+              primary: Theme.of(context).colorScheme.secondary,
+              onPrimary: Colors.black,
+              elevation: 0,
+              tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+            ),
+            onPressed: _submitForm,
           ),
         ],
       ),
